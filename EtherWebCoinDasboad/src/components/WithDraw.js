@@ -48,59 +48,60 @@ const WithDraw = () => {
     }, []);
 
     return (
-        <CContainer fluid className="p-4">
-            <CCard
-                className="mb-4"
-                style={{
-                    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
-                    color: '#fff',
-                }}
-            >
-                <CCardBody>
-                    <CRow className="align-items-center g-3 justify-content-start">
-                        <CCol xs={2} sm={1} className=" d-flex justify-content-center justify-content-sm-start">
-                            <div
-                                style={{
-                                    backgroundColor: '#fff',
-                                    color: '#a86b25',
-                                    borderRadius: '50%',
-                                    width: '40px',
-                                    height: '40px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '20px',
-                                    fontWeight: 'bold',
-                                    margin: '0 auto',
-                                }}
-                            >
-                                <FaExchangeAlt />
-                            </div>
-                        </CCol>
+        <div >
+           <CCard
+  className="mb-4"
+  style={{
+    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
+    color: '#fff',
+  }}
+>
+  <CCardBody>
+    <CRow className="align-items-center g-3 text-center text-sm-start">
+      
+      {/* Icon */}
+      <CCol xs={12} sm={1} className="d-flex justify-content-center justify-content-sm-start">
+        <div
+          style={{
+            backgroundColor: '#fff',
+            color: '#a86b25',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '20px',
+            fontWeight: 'bold',
+          }}
+        >
+          <FaExchangeAlt />
+        </div>
+      </CCol>
 
-                        <CCol xs={12} sm={7}>
+      {/* Text */}
+      <CCol xs={12} sm={7}>
+        <h5 className="fw-bold mb-1">Available Amount</h5>
+        <p className="mb-0">{user?.available_amount || 0}</p>
+      </CCol>
 
-
-                            <h5 className="fw-bold mb-1 text-center text-sm-start">Available Amount</h5>
-                            <p className="mb-0 text-center text-sm-start">{user?.available_amount}</p>
-                        </CCol>
-
-                        <CCol xs={12} sm={4}>
-                            <div className="d-flex justify-content-center justify-content-sm-end">
-                                <CButton
-                                    color="warning"
-                                    className="text-black fw-bold d-flex align-items-center gap-2 px-3 py-2"
-                                    onClick={() => setVisible(true)}
-                                    style={{ fontSize: '0.875rem', minWidth: '150px' }}
-                                >
-                                    <FaMoneyBillWave size={16} />
-                                    Withdraw Now
-                                </CButton>
-                            </div>
-                        </CCol>
-                    </CRow>
-                </CCardBody>
-            </CCard>
+      {/* Button */}
+      <CCol xs={12} sm={4}>
+        <div className="d-flex justify-content-center justify-content-sm-end">
+          <CButton
+            color="warning"
+            className="text-black fw-bold d-flex align-items-center gap-2 px-3 py-2"
+            onClick={() => setVisible(true)}
+            style={{ fontSize: '0.875rem', minWidth: '150px' }}
+          >
+            <FaMoneyBillWave size={16} />
+            Withdraw Now
+          </CButton>
+        </div>
+      </CCol>
+    </CRow>
+  </CCardBody>
+</CCard>
 
             {loading ? (
                 <div className="text-center my-5">
@@ -179,21 +180,21 @@ const WithDraw = () => {
                         </CCardHeader>
                         <CCardBody className='dark-table'>
                             <CTable striped responsive hover className='dark-table'>
-                             <CTableHead className="dark-table">
-  <CTableRow>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>#</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Available Amount</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Remain Amount</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Withdraw Amount</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Paid Amount</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Fees</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>From Address</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>To Address</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Txn Hash</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Date Time</CTableHeaderCell>
-    <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Status</CTableHeaderCell>
-  </CTableRow>
-</CTableHead>
+                                <CTableHead className="dark-table">
+                                    <CTableRow>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>#</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Available Amount</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Remain Amount</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Withdraw Amount</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Paid Amount</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Fees</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>From Address</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>To Address</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Txn Hash</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Date Time</CTableHeaderCell>
+                                        <CTableHeaderCell style={{ whiteSpace: 'nowrap' }}>Status</CTableHeaderCell>
+                                    </CTableRow>
+                                </CTableHead>
 
                                 <CTableBody className='dark-table'>
                                     {widthDrawData?.data && widthDrawData.data.length > 0 ? (
@@ -210,11 +211,11 @@ const WithDraw = () => {
                                                 </CTableDataCell>
 
                                                 <CTableDataCell style={{ maxWidth: 100, wordBreak: 'break-all' }}>
-                                                    {/* {item.to_address} */} {item.to_address?.slice(0,8)}....{item.to_address?.slice(-6)}
+                                                    {/* {item.to_address} */} {item.to_address?.slice(0, 8)}....{item.to_address?.slice(-6)}
                                                 </CTableDataCell>
                                                 <CTableDataCell>
                                                     {item.txn_hash ? (
-                                                        <span style={{ wordBreak: 'break-all' }}> {item.txn_hash?.slice(0,8)}....{item.txn_hash?.slice(-6)} </span>
+                                                        <span style={{ wordBreak: 'break-all' }}> {item.txn_hash?.slice(0, 8)}....{item.txn_hash?.slice(-6)} </span>
                                                     ) : (
                                                         <CBadge color="warning">Not Available</CBadge>
                                                     )}
@@ -230,7 +231,7 @@ const WithDraw = () => {
                                     ) : (
                                         <CTableRow>
                                             <CTableDataCell colSpan="11" className="text-center text-muted py-4">
-                                                No Withdraw History Found
+                                                No Data Found
                                             </CTableDataCell>
                                         </CTableRow>
                                     )}
@@ -243,7 +244,7 @@ const WithDraw = () => {
                 </>
             )}
             <WithdrawRequestModal visible={visible} setVisible={setVisible} />
-        </CContainer>
+        </div>
     );
 };
 

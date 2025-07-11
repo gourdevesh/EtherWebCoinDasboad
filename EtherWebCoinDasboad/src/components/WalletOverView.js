@@ -43,7 +43,7 @@ const WalletOverview = () => {
     </CCol>
   )
   return (
-    <div className="wallet-container">
+    <div >
       <div className="top-card">
         <div className="wallet-info">
           <FaWallet className="wallet-icon" />

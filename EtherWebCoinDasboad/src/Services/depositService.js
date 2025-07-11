@@ -1,4 +1,4 @@
-import { cilDoubleQuoteSansLeft } from "@coreui/icons";
+import { toast } from "react-toastify";
 import api from "./api";
 
 export const notifyBackendOfDeposit = async (deposit_amount, deposit_asset, deposit_type) => {
@@ -101,12 +101,16 @@ export const getDeposits = async (page = 1, perPage = 10) => {
     };
   } catch (error) {
     const errData = error?.response?.data;
+    const errorMessage = error.response?.data?.message || 'Failed to fetch stake list';
+    if (error.response?.status === 401) {
+      toast.error(errorMessage);
+      localStorage.removeItem('token');
+      window.location.href = '/#/login';
+      return;
+    }
 
-    if (errData?.errors && typeof errData.errors === 'object') {
-      const firstField = Object.keys(errData.errors)[0];
-      const firstErrorMessage = errData.errors[firstField]?.[0];
-      throw new Error(firstErrorMessage || 'Validation error');
-    } else {
+
+    else {
       throw new Error(errData?.message || error.message || 'Failed to fetch deposits');
     }
   }

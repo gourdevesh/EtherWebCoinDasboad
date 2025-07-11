@@ -52,52 +52,62 @@ const FundTransfer = () => {
     const totalPages = Math.ceil(total / perPage);
 
     return (
-        <CContainer fluid className="p-4" >
-            <CCard
-                className="mb-4"
-                style={{
-                    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
-                    color: '#fff',
-                }}
-            >
-                <CCardBody>
-                    <CRow className="align-items-center">
-                        <CCol md="auto" className="pe-4">
-                            <div
-                                style={{
-                                    backgroundColor: '#fff',
-                                    color: '#a86b25',
-                                    borderRadius: '50%',
-                                    width: '40px',
-                                    height: '40px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '20px',
-                                    fontWeight: 'bold',
-                                }}
-                            >
-                                <FaExchangeAlt />
-                            </div>
-                        </CCol>
-                        <CCol md={8} className="px-0">
-                            <h5 className="fw-bold mb-1">Transfer Fund</h5>
-                            <p className="mb-0">
-                                You can transfer funds from your account to another account
-                            </p>
-                        </CCol>
-                        <CCol md="auto" className="ms-auto">
-                            <CButton
-                                color="warning"
-                                className="text-black fw-bold"
-                                onClick={() => setShow(true)}
-                            >
-                                Transfer Now
-                            </CButton>
-                        </CCol>
-                    </CRow>
-                </CCardBody>
-            </CCard>
+        <div  >
+          <CCard
+  className="mb-4"
+  style={{
+    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
+    color: '#fff',
+  }}
+>
+  <CCardBody>
+  <CRow className="align-items-center text-center text-md-start">
+  {/* Icon */}
+  <CCol xs={12} md="auto" className="mb-3 mb-md-0">
+    <div
+      style={{
+        backgroundColor: '#fff',
+        color: '#a86b25',
+        borderRadius: '50%',
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '20px',
+        fontWeight: 'bold',
+        margin: '0 auto',
+      }}
+    >
+      <FaExchangeAlt />
+    </div>
+  </CCol>
+
+  {/* Text + Button wrapper */}
+  <CCol xs={12} md>
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <div>
+        <h5 className="fw-bold mb-1 mb-md-0">Transfer Fund</h5>
+        <p className="mb-0">
+          You can transfer funds from your account to another account
+        </p>
+      </div>
+
+      <div className="ms-md-auto">
+        <CButton
+          color="warning"
+          className="text-black fw-bold"
+          onClick={() => setShow(true)}
+        >
+          Transfer Now
+        </CButton>
+      </div>
+    </div>
+  </CCol>
+</CRow>
+
+  </CCardBody>
+</CCard>
 
             {/* Transfer List */}
             {loading ? (
@@ -174,7 +184,7 @@ const FundTransfer = () => {
             )}
 
             <FundTransferModal show={show} handleClose={() => setShow(false)} />
-        </CContainer>
+        </div>
     );
 };
 

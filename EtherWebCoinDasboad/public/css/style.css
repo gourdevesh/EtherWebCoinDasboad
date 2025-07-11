@@ -442,3 +442,12 @@ color: #fff;
 }
 
 
+.custom-link {
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.custom-link:hover {
+  color: #28a745; /* or any color you prefer */
+}

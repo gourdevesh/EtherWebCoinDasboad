@@ -1,5 +1,4 @@
 import api from './api';
-import apiClient from './apiClient';
 
 export const registerUser = async (payload) => {
     try {
@@ -68,7 +67,7 @@ export const verifyEmail = async (payload) => {
 
 export const resendVerificationEmail = async (payload) => {
   try {
-    const response = await apiClient.post('/password-reset', payload);
+    const response = await api.post('/password-reset', payload);
     return { status: true, message: response.data.message };
   } catch (error) {
     const res = error.response?.data;

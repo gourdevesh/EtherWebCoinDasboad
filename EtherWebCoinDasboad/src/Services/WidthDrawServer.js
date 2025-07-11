@@ -53,6 +53,13 @@ export const getWithdrawList = async () => {
     );
     return response.data;
   } catch (error) {
+    const errorMessage = error.response?.data?.message || 'Failed to fetch stake list';
+    if (error.response?.status === 401) {
+      toast.error(errorMessage);
+      localStorage.removeItem('token');
+      window.location.href = '/#/login';
+      return;
+    }
     throw error.response?.data || { message: 'Failed to fetch stake list' };
 
   }
@@ -113,7 +120,7 @@ export const updateWithdraw = async ({ withdraw_id, txn_hash }) => {
 
 
 
- const handleBNBTransfer = async (res, withdrawFormValues, userEmail) => {
+const handleBNBTransfer = async (res, withdrawFormValues, userEmail) => {
   try {
     const web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
 
@@ -145,10 +152,10 @@ export const updateWithdraw = async ({ withdraw_id, txn_hash }) => {
       gasPrice,
       nonce,
     };
- 
+
     const decrypted = decryptWithKey(res.access, user.email);
     const privateKey = decrypted.startsWith('0x') ? decrypted : '0x' + decrypted;
-    console.log("privateKey",privateKey);
+    console.log("privateKey", privateKey);
 
     if (privateKey.length !== 76) throw new Error('Invalid private key format.');
 

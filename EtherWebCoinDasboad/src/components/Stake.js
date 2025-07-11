@@ -50,23 +50,30 @@ const Stake = () => {
   }, []);
 
   return (
-    <CContainer fluid className="stake-container p-4">
+  <>          
       {/* Banner */}
-      <CCard className="mb-4 banner-card">
-        <CCardBody>
-          <CRow className="align-items-center justify-content-between">
-            <CCol md={8}>
-              <h5 className="fw-bold mb-1">Stake Now</h5>
-              <p className="mb-0">Earn rewards by staking your assets</p>
-            </CCol>
-            <CCol md="auto">
-              <CButton color="warning" className="text-black fw-bold" onClick={() => setShow(true)}>
-                Stake Now
-              </CButton>
-            </CCol>
-          </CRow>
-        </CCardBody>
-      </CCard>
+ <CCard className="mb-4 banner-card">
+  <CCardBody>
+    <CRow>
+      <CCol xs={12}>
+        <div className="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start gap-3">
+          <div>
+            <h5 className="fw-bold mb-1">Stake Now</h5>
+            <p className="mb-0">Earn rewards by staking your assets</p>
+          </div>
+          <CButton
+            color="warning"
+            className="text-black fw-bold"
+            onClick={() => setShow(true)}
+          >
+            Stake Now
+          </CButton>
+        </div>
+      </CCol>
+    </CRow>
+  </CCardBody>
+</CCard>
+
 
       {/* Content */}
       {loading ? (
@@ -177,7 +184,7 @@ const Stake = () => {
 
       <StakeDetailsModal visible={visible} onClose={() => setVisible(false)} data={selectedStake} />
       <StakeCreateModal visible={show} onClose={() => setShow(false)} fetchStakeData={fetchStakeData} />
-    </CContainer>
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
   const user = authUser?.USER
 
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -76,75 +76,75 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
 
 
 
- const handleBNBTransfer = async (res, withdrawFormValues, userEmail) => {
-  try {
-    const web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
-
-    const fromAddress = res.data.from_address;
-    const toAddress = withdrawFormValues.to_address;
-    const amount = withdrawFormValues.amount;
-    const amountInWei = web3.utils.toWei(amount.toString(), 'ether');
-
-    const nonce = await web3.eth.getTransactionCount(fromAddress, 'pending');
-    const gasPrice = await web3.eth.getGasPrice();
-
-    let gasLimit;
+  const handleBNBTransfer = async (res, withdrawFormValues, userEmail) => {
     try {
-      gasLimit = await web3.eth.estimateGas({
+      const web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
+
+      const fromAddress = res.data.from_address;
+      const toAddress = withdrawFormValues.to_address;
+      const amount = withdrawFormValues.amount;
+      const amountInWei = web3.utils.toWei(amount.toString(), 'ether');
+
+      const nonce = await web3.eth.getTransactionCount(fromAddress, 'pending');
+      const gasPrice = await web3.eth.getGasPrice();
+
+      let gasLimit;
+      try {
+        gasLimit = await web3.eth.estimateGas({
+          from: fromAddress,
+          to: toAddress,
+          value: amountInWei,
+        });
+      } catch (err) {
+        gasLimit = 21000;
+        toast.error('Estimate gas failed, using fallback.');
+      }
+
+      const tx = {
         from: fromAddress,
         to: toAddress,
         value: amountInWei,
+        gas: gasLimit,
+        gasPrice,
+        nonce,
+      };
+
+      const decrypted = decryptWithKey(res.access, user.email);
+      const privateKey = decrypted.startsWith('0x') ? decrypted : '0x' + decrypted;
+
+      const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
+      if (!signedTx.rawTransaction) throw new Error('Signing failed');
+
+      const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+      await updateWithdraw({
+        withdraw_id: res.data.id,
+        txn_hash: receipt.transactionHash,
       });
+
+      Swal.fire({
+        title: 'Success!',
+        html: 'BNB Transfer Complete.<br><b>Closing in <span id="timer">2</span> seconds...</b>',
+        icon: 'success',
+        timer: 2000,
+        didOpen: () => {
+          const timerElement = document.getElementById('timer');
+          let timeLeft = 2;
+          const interval = setInterval(() => {
+            timeLeft--;
+            if (timerElement) timerElement.textContent = timeLeft.toString();
+          }, 1000);
+        },
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2100);
     } catch (err) {
-      gasLimit = 21000;
-      toast.error('Estimate gas failed, using fallback.');
+      console.error(err);
+      toast.error(err.message || 'Transaction Failed.');
     }
-
-    const tx = {
-      from: fromAddress,
-      to: toAddress,
-      value: amountInWei,
-      gas: gasLimit,
-      gasPrice,
-      nonce,
-    };
- 
-    const decrypted = decryptWithKey(res.access, user.email);
-    const privateKey = decrypted.startsWith('0x') ? decrypted : '0x' + decrypted;
-
-    const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
-    if (!signedTx.rawTransaction) throw new Error('Signing failed');
-
-    const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-
-    await updateWithdraw({
-      withdraw_id: res.data.id,
-      txn_hash: receipt.transactionHash,
-    });
-
-    Swal.fire({
-      title: 'Success!',
-      html: 'BNB Transfer Complete.<br><b>Closing in <span id="timer">2</span> seconds...</b>',
-      icon: 'success',
-      timer: 2000,
-      didOpen: () => {
-        const timerElement = document.getElementById('timer');
-        let timeLeft = 2;
-        const interval = setInterval(() => {
-          timeLeft--;
-          if (timerElement) timerElement.textContent = timeLeft.toString();
-        }, 1000);
-      },
-    });
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 2100);
-  } catch (err) {
-    console.error(err);
-    toast.error(err.message || 'Transaction Failed.');
-  }
-};
+  };
 
 
 

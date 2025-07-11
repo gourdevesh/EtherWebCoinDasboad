@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import api from './api';
 
 export const getTransfers = async (page = 1, per_page = 10) => {
@@ -15,8 +16,13 @@ export const getTransfers = async (page = 1, per_page = 10) => {
 
         return response.data;
     } catch (error) {
-
-        const errData = error.response?.data;
-        throw new Error(errData?.message || 'Failed to fetch transfer history');
+        const errorMessage = error.response?.data?.message || 'Failed to fetch stake list';
+        if (error.response?.status === 401) {
+            toast.error(errorMessage);
+            localStorage.removeItem('token');
+            window.location.href = '/#/login';
+            return;
+        }
+        throw new Error(errorMessage?.message || 'Failed to fetch transfer history');
     }
 };

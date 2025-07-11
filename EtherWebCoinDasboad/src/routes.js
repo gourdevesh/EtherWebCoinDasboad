@@ -79,7 +79,7 @@ const routes = [
   { path: '/update-tnx-password', name: 'Update Tnx Password', element: UpdateTnxPassword },
   { path: '/fund-transfer', name: 'Fund Transfer', element: FundTransfer },
   { path: '/withdraw', name: 'WithDraw', element: WithDraw },
-    { path: '/deposit', name: 'Deposit History', element: DepositHistoryTable },
+    { path: '/deposit', name: 'Deposit', element: DepositHistoryTable },
     { path: '/level-income', name: 'Level Income', element: LevelIncomeTable },
        { path: '/referral-income', name: 'Referral Income', element: ReferralIncomeTable },
         { path: '/team-business', name: 'Team Business', element: TeamBusinessTable },

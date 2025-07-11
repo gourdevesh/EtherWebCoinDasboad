@@ -17,6 +17,7 @@ import PasswordReset from './views/pages/forgetPassword/PasswordReset'
 import MyTeam from './components/MyTeam'
 import { useAuth } from './views/pages/context/AuthContext'
 import PrivateRoute from './PrivateRoute'
+import SignIn from './views/pages/login/Signin'
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
@@ -28,7 +29,7 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 
 const App = () => {
-  const {refreshProfile} = useAuth()
+  const { refreshProfile } = useAuth()
 
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const storedTheme = useSelector((state) => state.theme)
@@ -60,14 +61,15 @@ const App = () => {
         }
       >
         <Routes>
-          <Route exact path="/login" name="Login Page" element={<Login />} />
+          {/* <Route exact path="/login" name="Login Page" element={<Login />} /> */}
           <Route exact path="/register" name="Register Page" element={<Register />} />
           <Route exact path="/verify-email" name="Verify Email" element={<VerifyEmail />} />
           <Route exact path="/password-reset" name="password reset" element={<PasswordReset />} />
 
-
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
           <Route exact path="/500" name="Page 500" element={<Page500 />} />
+          <Route exact path="/login" name="Login Page" element={<SignIn />} />
+
           <Route path="*" name="Home" element={<PrivateRoute><DefaultLayout /></PrivateRoute>} />
 
         </Routes>

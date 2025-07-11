@@ -70,80 +70,80 @@ const MyTeam = () => {
   return (
     <>
       <CRow className="mb-4 g-3">
-  <CCol xs={12} sm={4}>
-    <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
-      <CCardBody className="d-flex align-items-center gap-4">
-        <div className="icon-circle bg-light-purple text-primary d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
-          <CIcon icon={cilUserFollow} size="xxl" />
-        </div>
-        <div>
-          <h5 className="mb-1" style={{ fontSize: '18px' }}>Direct Referral</h5>
-          <strong style={{ fontSize: '22px' }}>{teamData.directReferral}</strong>
-        </div>
-      </CCardBody>
-    </CCard>
-  </CCol>
+        <CCol xs={12} sm={4}>
+          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
+            <CCardBody className="d-flex align-items-center gap-4">
+              <div className="icon-circle bg-light-purple text-primary d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+                <CIcon icon={cilUserFollow} size="xxl" />
+              </div>
+              <div>
+                <h5 className="mb-1" style={{ fontSize: '18px' }}>Direct Referral</h5>
+                <strong style={{ fontSize: '22px' }}>{teamData.directReferral || 0}</strong>
+              </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
 
-  <CCol xs={12} sm={4}>
-    <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
-      <CCardBody className="d-flex align-items-center gap-4">
-        <div className="icon-circle bg-light-warning text-warning d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
-          <CIcon icon={cilUser} size="xxl" />
-        </div>
-        <div>
-          <h5 className="mb-1" style={{ fontSize: '18px' }}>Active Referral</h5>
-          <strong style={{ fontSize: '22px' }}>{teamData.activeReferral}</strong>
-        </div>
-      </CCardBody>
-    </CCard>
-  </CCol>
+        <CCol xs={12} sm={4}>
+          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
+            <CCardBody className="d-flex align-items-center gap-4">
+              <div className="icon-circle bg-light-warning text-warning d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+                <CIcon icon={cilUser} size="xxl" />
+              </div>
+              <div>
+                <h5 className="mb-1" style={{ fontSize: '18px' }}>Active Referral</h5>
+                <strong style={{ fontSize: '22px' }}>{teamData.activeReferral || 0}</strong>
+              </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
 
-  <CCol xs={12} sm={4}>
-    <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '9px' }}>
-      <CCardBody className="d-flex align-items-center gap-4">
-        <div className="icon-circle bg-light-info text-info d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
-          <CIcon icon={cilGroup} size="xxl" />
-        </div>
-        <div>
-          <h5 className="mb-1" style={{ fontSize: '18px' }}>Team</h5>
-          <strong style={{ fontSize: '22px' }}>{teamData.team}</strong>
-        </div>
-      </CCardBody>
-    </CCard>
-  </CCol>
-</CRow>
+        <CCol xs={12} sm={4}>
+          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '9px' }}>
+            <CCardBody className="d-flex align-items-center gap-4">
+              <div className="icon-circle bg-light-info text-info d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+                <CIcon icon={cilGroup} size="xxl" />
+              </div>
+              <div>
+                <h5 className="mb-1" style={{ fontSize: '18px' }}>Team</h5>
+                <strong style={{ fontSize: '22px' }}>{teamData.team || 0}</strong>
+              </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
 
       <div style={{ padding: "20px", height: "auto" }} className='dark-table'>
 
-    <CNav className="custom-tabs dark-table" style={{color:"white"}}>
-  <CNavItem >
-    <CNavLink 
-    style={{color:"white"}}
-      className={activeTab === 'direct' ? 'active' : ''}
-      onClick={() => setActiveTab('direct')}
-    >
-      Direct
-    </CNavLink>
-  </CNavItem>
-  <CNavItem>
-    <CNavLink
-    style={{color:"white"}}
-      className={activeTab === 'team' ? 'active' : ''}
-      onClick={() => setActiveTab('team')}
-    >
-      Team
-    </CNavLink>
-  </CNavItem>
-  <CNavItem>
-    <CNavLink
-    style={{color:"white"}}
-      className={activeTab === 'active' ? 'active' : ''}
-      onClick={() => setActiveTab('active')}
-    >
-      Active
-    </CNavLink>
-  </CNavItem>
-</CNav>
+        <CNav className="custom-tabs dark-table" style={{ color: "white" }}>
+          <CNavItem >
+            <CNavLink
+              style={{ color: "white" }}
+              className={activeTab === 'direct' ? 'active' : ''}
+              onClick={() => setActiveTab('direct')}
+            >
+              Direct
+            </CNavLink>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink
+              style={{ color: "white" }}
+              className={activeTab === 'team' ? 'active' : ''}
+              onClick={() => setActiveTab('team')}
+            >
+              Team
+            </CNavLink>
+          </CNavItem>
+          <CNavItem>
+            <CNavLink
+              style={{ color: "white" }}
+              className={activeTab === 'active' ? 'active' : ''}
+              onClick={() => setActiveTab('active')}
+            >
+              Active
+            </CNavLink>
+          </CNavItem>
+        </CNav>
 
 
 
@@ -180,16 +180,17 @@ const MyTeam = () => {
                   <CTableRow>
                     <CTableDataCell colSpan="9" className="text-center text-muted py-4">
                       No Data Found
-                    </CTableDataCell>                  </CTableRow>
+                    </CTableDataCell>
+                  </CTableRow>
                 )}
               </CTableBody>
             </CTable>
 
             <CModal visible={visibleModal} onClose={() => setVisibleModal(false)} size="lg">
-              <CModalHeader onClose={() => setVisibleModal(false)}>
+              <CModalHeader onClose={() => setVisibleModal(false)} className="dark-table">
                 <CModalTitle>Level {selectedLevel} Users</CModalTitle>
               </CModalHeader>
-              <CModalBody>
+              <CModalBody className="dark-table">
                 {selectedLevelUsers.length > 0 ? (
                   <CTable striped hover responsive className='dark-table'>
                     <CTableHead>

@@ -23,6 +23,7 @@ const DepositForm = ({ onDepositSuccess }) => {
 
 
   const handleWeb3Transfer = async () => {
+    
     try {
       if (!window.ethereum) return alert('MetaMask not detected!')
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -166,7 +167,7 @@ const DepositForm = ({ onDepositSuccess }) => {
           </div>
 
           <div className="d-flex justify-content-center gap-3 w-100">
-            <CButton color="success" className="w-50" onClick={handleWeb3Transfer} type="button">
+            <CButton color="success" className="w-50 text-white" onClick={handleWeb3Transfer} type="button">
               {walletAddress ? `Wallet: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Wallet'}
             </CButton>
             <CButton color="primary" type="submit" className="w-50" onClick={handleGatewayPayment}>

@@ -27,7 +27,7 @@ const MyRank = () => {
   }, [])
 
   return (
-    <div className="rank-dashboard">
+    <div>
       <div className="rank-cards">
         <div className="rank-card pink-glow">
           <img src={previousRank?.image} alt="Previous Rank" />

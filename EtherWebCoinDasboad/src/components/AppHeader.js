@@ -60,12 +60,13 @@ const AppHeader = () => {
           </li>
 
         </CHeaderNav>
-        <CHeaderNav className="d-none d-md-flex">
+        <CHeaderNav>
           <CHeaderNav className="ms-auto align-items-center gap-3">
-            <div className="text-white text-start d-none d-md-block">
-              <div className="fw-bold ">{user?.name}</div>
-              <small style={{ fontSize: '12px', color: '#ccc' }}>{user?.email}</small>
-            </div>
+          <div className="text-white text-start">
+  <div className="fw-bold">{user?.name}</div>
+  <small style={{ fontSize: '12px', color: '#ccc' }}>{user?.email}</small>
+</div>
+
           </CHeaderNav>
 
 

@@ -34,7 +34,7 @@ const LevelIncomeTable = () => {
         setFilteredData(teamList)
         setLevelCounts(levelCountData)
       } catch (err) {
-        toast.error(err.message || 'Failed to load team data')
+        console.error('Error fetching team data:', err)
       } finally {
         setLoading(false)
       }
@@ -79,7 +79,9 @@ const LevelIncomeTable = () => {
           </div>
         ) : (
           <>
-            <CTable striped hover responsive className="dark-table">
+                        <div className="table-responsive-custom">
+
+            <CTable striped hover responsive className="dark-table " >
               <CTableHead>
                 <CTableRow>
                   <CTableHeaderCell>#</CTableHeaderCell>
@@ -111,7 +113,7 @@ const LevelIncomeTable = () => {
                 )}
               </CTableBody>
             </CTable>
-
+</div>
             {totalPages > 1 && (
                 <PaginationButtons
                   currentPage={currentPage}

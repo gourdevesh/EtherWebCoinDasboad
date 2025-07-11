@@ -59,9 +59,9 @@ const Profile = () => {
                   size="xl"
                   style={{
                     border: '1px solid #ffba00',
-                    borderRadius: '8px', // or '0' for sharp corners
+                    borderRadius: '8px',
                     boxSizing: 'border-box',
-                    width: '80px', // optional: set fixed width
+                    width: '80px',
                     height: '80px', // optional: set fixed height
                     objectFit: 'cover',
                   }}
@@ -75,14 +75,14 @@ const Profile = () => {
                   onChange={handleImageChange}
                 />
                 <span
-                  // style={{
-                  //   position: 'absolute',
-                  //   bottom: 0,
-                  //   right: -6,
-                  //   background: '#fff',
-                  //   borderRadius: '50%',
-                  //   padding: '2px',
-                  // }}
+                // style={{
+                //   position: 'absolute',
+                //   bottom: 0,
+                //   right: -6,
+                //   background: '#fff',
+                //   borderRadius: '50%',
+                //   padding: '2px',
+                // }}
                 >
                   {/* <CIcon icon={cilShareAlt} /> */}
                 </span>
@@ -130,58 +130,58 @@ const Profile = () => {
           <CCardBody>
             <h5 className="mb-3 text-primary">Profile Setting</h5>
 
-            <CRow className="mb-3">
+            <CRow className="mb-3 g-3">
               <CCol md={6}>
-                <label className="text-white">Name</label>
-                <input type="text" className="form-control dark-input" value={user?.name} readOnly />
+                <label className="text-white mb-2">Name</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.name} readOnly />
               </CCol>
               <CCol md={6}>
-                <label className="text-white">Email</label>
-                <input type="text" className="form-control dark-input" value={user?.email} readOnly />
-              </CCol>
-            </CRow>
-
-            <CRow className="mb-3">
-              <CCol md={6}>
-                <label className="text-white">Referral Code</label>
-                <input type="text" className="form-control dark-input" value={user?.my_code} readOnly />
-              </CCol>
-              <CCol md={6}>
-                <label className="text-white">Rank</label>
-                <input type="text" className="form-control dark-input" value={user?.rank} readOnly />
+                <label className="text-white mb-2">Email</label>
+                <input type="text" className="form-control dark-input " style={{ backgroundColor: '#151136' }} value={user?.email} readOnly />
               </CCol>
             </CRow>
 
-            <CRow className="mb-3">
+            <CRow className="mb-3 g-3">
               <CCol md={6}>
-                <label className="text-white">Status</label>
-                <input type="text" className="form-control dark-input" value={user?.user_status} readOnly />
+                <label className="text-white mb-2">Referral Code</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.my_code} readOnly />
               </CCol>
               <CCol md={6}>
-                <label className="text-white">Withdraw Status</label>
-                <input type="text" className="form-control dark-input" value={user?.withdraw_status} readOnly />
-              </CCol>
-            </CRow>
-
-            <CRow className="mb-3">
-              <CCol md={6}>
-                <label className="text-white">My Stake</label>
-                <input type="text" className="form-control dark-input" value={user?.my_stake} readOnly />
-              </CCol>
-              <CCol md={6}>
-                <label className="text-white">Total Income</label>
-                <input type="text" className="form-control dark-input" value={user?.total_income} readOnly />
+                <label className="text-white mb-2">Rank</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.rank} readOnly />
               </CCol>
             </CRow>
 
-            <CRow className="mb-3">
+            <CRow className="mb-3 g-3">
               <CCol md={6}>
-                <label className="text-white">Available Amount</label>
-                <input type="text" className="form-control dark-input" value={user?.available_amount} readOnly />
+                <label className="text-white mb-2">Status</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.user_status} readOnly />
               </CCol>
               <CCol md={6}>
-                <label className="text-white">Stake Income</label>
-                <input type="text" className="form-control dark-input" value={user?.stake_income} readOnly />
+                <label className="text-white mb-2">Withdraw Status</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.withdraw_status} readOnly />
+              </CCol>
+            </CRow>
+
+            <CRow className="mb-3 g-3">
+              <CCol md={6}>
+                <label className="text-white mb-2">My Stake</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.my_stake} readOnly />
+              </CCol>
+              <CCol md={6}>
+                <label className="text-white mb-2">Total Income</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.total_income} readOnly />
+              </CCol>
+            </CRow>
+
+            <CRow className="mb-3 g-3">
+              <CCol md={6}>
+                <label className="text-white mb-2">Available Amount</label>
+                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.available_amount} readOnly />
+              </CCol>
+              <CCol md={6}>
+                <label className="text-white mb-2">Stake Income</label>
+              <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.stake_income} readOnly />
               </CCol>
             </CRow>
           </CCardBody>
