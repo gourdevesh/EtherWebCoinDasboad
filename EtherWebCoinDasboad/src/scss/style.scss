@@ -1,0 +1,176 @@
+@use "@coreui/coreui/scss/coreui" as * with ($enable-deprecation-messages: false,
+);
+@use "@coreui/chartjs/scss/coreui-chartjs";
+@use "vendors/simplebar";
+
+body {
+  background-color: var(--cui-tertiary-bg);
+}
+
+.wrapper {
+  width: 100%;
+  padding-inline: var(--cui-sidebar-occupy-start, 0) var(--cui-sidebar-occupy-end, 0);
+  will-change: auto;
+  @include transition(padding .15s);
+}
+
+.header>.container-fluid,
+.sidebar-header {
+  min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
+}
+
+.sidebar-brand-full {
+  margin-left: 3px;
+}
+
+.sidebar-header {
+  .nav-underline-border {
+    --cui-nav-underline-border-link-padding-x: 1rem;
+    --cui-nav-underline-border-gap: 0;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
+  }
+}
+
+.sidebar-toggler {
+  margin-inline-start: auto;
+}
+
+.sidebar-narrow,
+.sidebar-narrow-unfoldable:not(:hover) {
+  .sidebar-toggler {
+    margin-inline-end: auto;
+  }
+}
+
+.header>.container-fluid+.container-fluid {
+  min-height: 3rem;
+}
+
+.footer {
+  min-height: calc(3rem + 1px); // stylelint-disable-line function-disallowed-list
+}
+
+@include color-mode(dark) {
+  body {
+    background-color: #0E0F33;
+  }
+
+  .footer {
+    --cui-footer-bg: #0E0F33
+;
+  }
+}
+
+.custom-tabs {
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.custom-tabs .nav-link {
+  color: black;
+  position: relative;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+}
+
+.custom-tabs .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #ccc;
+  /* default underline */
+  transition: background-color 0.3s ease;
+}
+
+.custom-tabs .nav-link:hover::after,
+.custom-tabs .nav-link.active::after {
+  background-color: #0e0f33;
+  /* blue underline on hover/active */
+}
+/* App.css or global.css */
+body {
+  background-color: #0E0F33;
+  color: white;
+}
+.custom-sidebar {
+  background-color: #0E0F33 !important;
+  color: white;
+}
+/* Sidebar Nav Link Styling */
+.custom-sidebar .nav-link,
+.sidebar .nav-link {
+  color: white !important;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #18193D !important;
+    color: white !important;
+  }
+
+  &.active {
+    background-color: #18193D !important;
+    color: white !important;
+  }
+}
+
+/* Optional: style for group toggle buttons (collapsible items) */
+.custom-sidebar .nav-group-toggle,
+.sidebar .nav-group-toggle {
+  color: white !important;
+
+  &:hover {
+    background-color: #18193D !important;
+    color: white !important;
+  }
+}
+
+/* Optional: Keep icon colors white */
+.custom-sidebar .nav-icon,
+.sidebar .nav-icon {
+  color: white !important;
+}
+/* AppHeader.scss OR global.scss */
+
+.custom-header {
+  background-color: #0E0F33 !important;
+  color: white !important;
+
+  .nav-link {
+    color: white !important;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #ddd !important;
+  }
+
+  .vr {
+    background-color: rgba(255, 255, 255, 0.2); // for vertical divider
+  }
+
+  .dropdown-toggle {
+    color: white !important;
+  }
+
+  .icon {
+    color: white !important;
+  }
+}
+/* SCSS / CSS */
+.breadcrumb-white .breadcrumb-item,
+.breadcrumb-white .breadcrumb-item a {
+  color: #fff !important;
+}
+.breadcrumb-white .breadcrumb-item + .breadcrumb-item::before {
+  color: #fff !important; // <-- this changes the slash `/`
+}

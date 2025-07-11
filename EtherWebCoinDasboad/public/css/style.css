@@ -1,0 +1,444 @@
+/* === Rank Dashboard Styles === */
+.rank-dashboard {
+  padding: 20px;
+}
+
+.rank-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #fff;
+
+}
+
+.rank-card {
+  flex: 1;
+  min-width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #1d1e48;
+  color: #fff;
+}
+
+.rank-card img {
+  width: 60px;
+  height: 60px;
+}
+
+.rank-list h4 {
+  margin-bottom: 15px;
+}
+
+.rank-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rank-list th,
+.rank-list td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.rank-list thead {
+  background-color: #f7f7f7;
+}
+
+.icon-img {
+  width: 35px;
+  height: 35px;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  background: #ffba00;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.wallet-container {
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+.top-card {
+  background: #352f9f;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wallet-icon {
+  font-size: 40px;
+  background: #4d44b5;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.wallet-label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.add-button {
+  background-color: #00c2a8;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.income-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(255, 0, 255, 0.2);
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-wrapper {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.modal-dialog-centered {
+  display: flex !important;
+  align-items: center !important;
+  min-height: calc(100% - 1rem);
+}
+
+/* Add this to your global CSS or scoped component CSS */
+.table-striped-custom tbody tr:nth-child(even) {
+  background-color: #f6f9fc;
+}
+
+.table-striped-custom tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+body {
+  background-color: #0e0f33;
+}
+
+body {
+  background-color: #0e0f33;
+  color: #ffffff;
+  /* optional: white text for contrast */
+}
+
+
+
+.text-dark svg {
+  fill: #000 !important;
+}
+
+.dropdown-menu {
+  background-color: #0E0F33 !important;
+  /* Deep navy background */
+  color: #fff !important;
+  border: 1px solid #1c1c4a;
+  /* Optional: subtle border for separation */
+}
+
+.dropdown-menu .dropdown-item {
+  color: #fff !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #1d1e48 !important;
+  /* Smooth contrast on hover */
+}
+
+.dropdown-menu .c-icon svg {
+  fill: #000 !important;
+}
+
+/* Dark theme base */
+.dark-table,
+.dark-table th,
+.dark-table td {
+  background-color: #0B0730 !important;
+  color: #ffffff !important;
+}
+
+/* Alternate row color for zebra effect */
+.dark-table tbody tr:nth-child(odd) {
+  background-color: #151136 !important;
+}
+
+/* Optional: Add hover effect */
+.dark-table tbody tr:hover {
+  background-color: #1c1c3a !important;
+  transition: 0.2s ease;
+}
+
+
+.dark-table tbody tr:nth-child(odd) {
+  background-color: #151136 !important;
+}
+
+.table-bordered> :not(caption)>*>* {
+  border-width: 1px !important;
+  /* or 2px, 3px as needed */
+  border-color: #444 !important;
+}
+
+.table-responsive-custom {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* for smooth scrolling on mobile */
+}
+
+.table-responsive-custom table {
+  min-width: 1000px;
+  /* or as needed to avoid squishing columns */
+}
+
+.stake-container {
+  background-color: #0e0f33;
+  color: #fff;
+}
+
+.banner-card {
+  background: linear-gradient(to right, #a86b25, rgb(181, 111, 42)) !important;
+  color: #fff !important;
+}
+
+.card-custom {
+  background-color: #1d1e48 !important;
+  color: #fff !important;
+}
+
+.table-card {
+  background-color: #1d1e48;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.table-responsive-custom {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.min-width-table {
+  min-width: 1000px;
+}
+
+/* Dark Table Theme */
+.dark-table th,
+.dark-table td {
+  background-color: #151136 !important;
+  color: #ffffff !important;
+  border-color: #2e2e5a !important;
+}
+
+.dark-table thead {
+  background-color: #1e1e3f !important;
+}
+
+.dark-table tbody tr:nth-child(odd) {
+  background-color: #1b1b36 !important;
+}
+
+.dark-table tbody tr:hover {
+  background-color: #2a2a4d !important;
+  transition: 0.2s ease;
+}
+
+.wallet-container {
+  padding: 20px;
+  background-color: #0e0f33;
+  color: #ffffff;
+}
+
+.top-card {
+  background: #1d1e48;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.wallet-icon {
+  font-size: 60px;
+  background: #4d44b5;
+  padding: 12px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.wallet-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.add-button {
+  background-color: #00c2a8;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.income-card {
+  background: #1d1e48;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: #fff;
+}
+
+.icon-wrapper {
+  background-color: #292964;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.card-label {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dark-card {
+  background-color: #1e1e3f !important;
+  color: #ffffff !important;
+  border-radius: 0.5rem;
+}
+
+.custom-tabs .nav-link {
+  color: #ffffff;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  /* padding: 10px 16px; */
+  padding-bottom: 10%;
+
+}
+
+.custom-tabs .nav-link:hover {
+  color: #b4a9ff;
+  border-bottom: 2px solid #b4a9ff;
+  padding-bottom: 10%;
+
+
+}
+
+.custom-tabs .nav-link.active {
+  color: #ffffff;
+  border-bottom: 2px solid #775de1;
+  font-weight: bold;
+  padding-bottom: 10%;
+}
+
+/* Hide arrows in number input for Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px; /* slightly reduced gap */
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  border: 2px solid #4636d1;
+  background-color: #f4f4f8; /* softer white */
+  color: #4636d1;
+  width: 30px;  /* smaller circle */
+  height: 30px;
+  border-radius: 50%;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+  background-color: #4636d1;
+  border-color: #4636d1;
+color: #fff;
+  box-shadow: 0 0 5px rgba(70, 54, 209, 0.3);
+
+}
+
+.pagination-btn.active {
+  background-color: #4636d1;
+  color: #e0dcfa;
+  box-shadow: 0 4px 10px rgba(70, 54, 209, 0.4);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+
