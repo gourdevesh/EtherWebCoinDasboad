@@ -27,6 +27,10 @@ const VerifyEmail = () => {
         setLoading(true)
         try {
             const response = await verifyEmail({ email })
+            if (!response.status) {
+                toast.error(response.message || 'Invalid email');
+                return;
+            }
             toast.success(response.message || 'Verification email sent!')
             navigate('/password-reset')
         } catch (err) {

@@ -37,9 +37,13 @@ const FundTransferModal = ({ show, handleClose, onTransfer }) => {
       });
 
       if (result.success) {
-        toast.success('Transfer successful');
+        toast.success(result.data.message || 'Transfer successful');
         handleClose();
         onTransfer();
+        setPassword("");
+        setAmount("");
+        setReceiverId("");
+
       } else {
         toast.error(result.error.message || 'Transfer failed');
       }

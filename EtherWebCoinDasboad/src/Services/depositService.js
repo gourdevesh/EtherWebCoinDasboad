@@ -59,7 +59,6 @@ export const updateDeposit = async (deposit_id, deposit_amount, from_address, tx
       }
     );
     localStorage.removeItem('deposit_id');
-
     return response.data;
   } catch (error) {
     const errData = error?.response?.data;

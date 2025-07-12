@@ -13,6 +13,7 @@ import {
   CCol,
   CRow,
   CSpinner,
+  CFormFeedback,
 } from '@coreui/react'
 import { submitStake } from '../Services/stake'
 import { toast } from 'react-toastify'
@@ -21,10 +22,12 @@ const StakeCreateModal = ({ visible, onClose, fetchStakeData }) => {
   const [stakeAmount, setStakeAmount] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [stakeReturn, setStakeReturn] = useState(0)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!stakeAmount) return toast.warning('Please enter a stake amount')
+    if (error) return toast.error(error)  
 
     try {
       setIsLoading(true)
@@ -47,10 +50,22 @@ const StakeCreateModal = ({ visible, onClose, fetchStakeData }) => {
   }
 
 
+
   const handleAmountChange = (e) => {
     const value = e.target.value
     setStakeAmount(value)
+    const numericValue = parseInt(value, 10)
+    if (
+      numericValue % 50 !== 0 ||
+      numericValue < 50 ||
+      numericValue > 10000
+    ) {
+      setError('Enter 50, 100, 150 ... up to 10000')
+    } else {
+      setError('')
+    }
   }
+
 
   return (
     <CModal visible={visible} onClose={onClose} size="md" alignment="center">

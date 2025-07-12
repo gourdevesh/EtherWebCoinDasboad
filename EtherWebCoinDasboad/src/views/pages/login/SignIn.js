@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Make sure this is installed and imported
+import { toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUser } from '../../../Services/authService';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -91,7 +91,7 @@ const SignIn = () => {
                                             {/* Email */}
                                             <div className="form-outline mb-4">
                                                 <label htmlFor="textInput" className="form-label" style={{ color: '#fff', fontSize: '1.22rem' }}>
-                                                    Email address
+                                                    Referral Code
                                                 </label>
                                                 <input
                                                     type="text"
@@ -100,7 +100,7 @@ const SignIn = () => {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     className="form-control form-control-lg"
-                                                    placeholder="Enter your email"
+                                                    placeholder="Enter your Referral Code"
                                                     required
                                                 />
                                             </div>

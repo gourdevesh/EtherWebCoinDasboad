@@ -127,6 +127,7 @@ const UpdateTnxPasswordForm = () => {
                                             value={new_password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             style={{ backgroundColor: '#151136' }}
+
                                         />
                                         <CInputGroupText
                                             style={{ cursor: 'pointer' }}

@@ -82,18 +82,18 @@ const _nav = [
     icon: <CIcon icon={cilTransfer} customClassName="nav-icon" />,
   },
 
-{
-  component: CNavItem,
-  name: 'Referral Income',
-  to: '/referral-income',
-  icon: <CIcon icon={cilUserFollow} customClassName="nav-icon" />,
-},
-{
-  component: CNavItem,
-  name: 'Team Business',
-  to: '/team-business',
-  icon: <CIcon icon={cilGroup} customClassName="nav-icon" />,
-},
+// {
+//   component: CNavItem,
+//   name: 'Referral Income',
+//   to: '/referral-income',
+//   icon: <CIcon icon={cilUserFollow} customClassName="nav-icon" />,
+// },
+// {
+//   component: CNavItem,
+//   name: 'Team Business',
+//   to: '/team-business',
+//   icon: <CIcon icon={cilGroup} customClassName="nav-icon" />,
+// },
 
 
   {

@@ -19,11 +19,12 @@ import {
 import CIcon from '@coreui/icons-react';
 import { cilWallet, cilMoney, cilDollar, cilSearch, cilCash } from '@coreui/icons';
 
-import { FaExchangeAlt, FaEye, FaMoneyBillWave } from 'react-icons/fa';
+import { FaCopy, FaExchangeAlt, FaEye, FaMoneyBillWave } from 'react-icons/fa';
 import WithdrawRequestModal from '../model/WithdrawRequest';
 import { getWithdrawList } from '../Services/WidthDrawServer';
 import { useAuth } from '../views/pages/context/AuthContext';
 import PaginationButtons from '../views/pages/PaginationButtons';
+import { toast } from 'react-toastify';
 
 const WithDraw = () => {
     const [widthDrawData, setWidthData] = useState(null);
@@ -216,17 +217,75 @@ const WithDraw = () => {
                                                 <CTableDataCell>${item.paid_amount}</CTableDataCell>
                                                 <CTableDataCell>${item.fees_deduction}</CTableDataCell>
                                                 <CTableDataCell style={{ maxWidth: 100, wordBreak: 'break-all' }} title={item.from_address}>
-                                                    {item.from_address?.slice(0, 8)}....{item.from_address?.slice(-6)}
-                                                </CTableDataCell>
+                                                    {item.from_address ? (
+                                                        <>
+                                                            <span>{`${item.from_address.slice(0, 8)}....${item.from_address.slice(-6)}`}</span>
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigator.clipboard.writeText(item.from_address);
+                                                                    toast.success('From address copied!');
+                                                                }}
+                                                                style={{
+                                                                    background: 'none',
+                                                                    border: 'none',
+                                                                    padding: 0,
+                                                                    cursor: 'pointer',
+                                                                    fontSize: '16px',
+                                                                }}
+                                                            >
+                                                                <FaCopy />
+                                                            </button>
+                                                        </>
+                                                    ) : (
+                                                        'NA'
+                                                    )}                                                </CTableDataCell>
 
                                                 <CTableDataCell style={{ maxWidth: 100, wordBreak: 'break-all' }}>
-                                                    {item.to_address?.slice(0, 8)}....{item.to_address?.slice(-6)}
-                                                </CTableDataCell>
+                                                    {item.to_address ? (
+                                                        <>
+                                                            <span>{`${item.to_address.slice(0, 8)}....${item.to_address.slice(-6)}`}</span>
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigator.clipboard.writeText(item.to_address);
+                                                                    toast.success('Address Copied');
+                                                                }}
+                                                                style={{
+                                                                    background: 'none',
+                                                                    border: 'none',
+                                                                    padding: 0,
+                                                                    cursor: 'pointer',
+                                                                    fontSize: '16px',
+                                                                }}
+                                                            >
+                                                                <FaCopy />
+                                                            </button>
+
+                                                        </>
+                                                    ) : (
+                                                        'NA'
+                                                    )}                                                </CTableDataCell>
                                                 <CTableDataCell>
                                                     {item.txn_hash ? (
-                                                        <span style={{ wordBreak: 'break-all' }}> {item.txn_hash?.slice(0, 8)}....{item.txn_hash?.slice(-6)} </span>
+                                                        <>
+                                                            <span>{`${item.txn_hash.slice(0, 8)}....${item.txn_hash.slice(-6)}`}</span>
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigator.clipboard.writeText(item.txn_hash);
+                                                                    toast.success('Transaction hash copied!');
+                                                                }}
+                                                                style={{
+                                                                    background: 'none',
+                                                                    border: 'none',
+                                                                    padding: 0,
+                                                                    cursor: 'pointer',
+                                                                    fontSize: '16px',
+                                                                }}
+                                                            >
+                                                                <FaCopy />
+                                                            </button>
+                                                        </>
                                                     ) : (
-                                                        <CBadge color="warning">Not Available</CBadge>
+                                                        'NA'
                                                     )}
                                                 </CTableDataCell>
                                                 <CTableDataCell>{item.date_time}</CTableDataCell>

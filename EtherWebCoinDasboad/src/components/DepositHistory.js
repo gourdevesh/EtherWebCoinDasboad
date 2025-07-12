@@ -12,6 +12,7 @@ import DepositForm from './header/DepositForm';
 import { checkZipwalletAndUpdate, getDeposits } from '../Services/depositService';
 import { toast } from 'react-toastify';
 import PaginationButtons from '../views/pages/PaginationButtons';
+import { FaCopy, FaRegClipboard } from 'react-icons/fa';
 
 const DepositHistoryTable = () => {
   const [deposits, setDeposits] = useState([]);
@@ -97,24 +98,83 @@ const DepositHistoryTable = () => {
             {deposits && deposits.length > 0 ? (
               deposits.map((item, index) => (
                 <CTableRow key={index}>
-                  <CTableDataCell>{(pagination.currentPage -1) * pagination.perPage + index+ 1}</CTableDataCell>
+                  <CTableDataCell>{(pagination.currentPage - 1) * pagination.perPage + index + 1}</CTableDataCell>
                   <CTableDataCell>{item.deposit_asset}</CTableDataCell>
                   <CTableDataCell>{item.deposit_amount}</CTableDataCell>
                   <CTableDataCell>{item.deposit_type}</CTableDataCell>
                   <CTableDataCell>
-                    {item.from_address
-                      ? `${item.from_address.slice(0, 8)}....${item.from_address.slice(-6)}`
-                      : 'NA'}
+                    {item.from_address ? (
+                      <>
+                        <span>{`${item.from_address.slice(0, 8)}....${item.from_address.slice(-6)}`}</span>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(item.from_address);
+                            toast.success('From address copied!');
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            padding: 0,
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                          }}
+                        >
+                          <FaCopy />
+                        </button>
+                      </>
+                    ) : (
+                      'NA'
+                    )}
                   </CTableDataCell>
-                  <CTableDataCell>
-                    {item.to_address
-                      ? `${item.to_address.slice(0, 8)}....${item.to_address.slice(-6)}`
-                      : 'NA'}
+                  <CTableDataCell className="d-flex align-items-center gap-2">
+                    {item.to_address ? (
+                      <>
+                        <span>{`${item.to_address.slice(0, 8)}....${item.to_address.slice(-6)}`}</span>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(item.to_address);
+                            toast.success('Address Copied');
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            padding: 0,
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                          }}
+                        >
+                          <FaCopy />
+                        </button>
+
+                      </>
+                    ) : (
+                    'NA'
+                    )}
                   </CTableDataCell>
+
                   <CTableDataCell>
-                    {item.txn_hash
-                      ? `${item.txn_hash.slice(0, 8)}....${item.txn_hash.slice(-6)}`
-                      : 'NA'}
+                    {item.txn_hash ? (
+                      <>
+                        <span>{`${item.txn_hash.slice(0, 8)}....${item.txn_hash.slice(-6)}`}</span>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(item.txn_hash);
+                            toast.success('Transaction hash copied!');
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            padding: 0,
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                          }}
+                        >
+                          <FaCopy />
+                        </button>
+                      </>
+                    ) : (
+                      'NA'
+                    )}
                   </CTableDataCell>
                   <CTableDataCell>{new Date(item.created_at).toLocaleString()}</CTableDataCell>
                   <CTableDataCell>

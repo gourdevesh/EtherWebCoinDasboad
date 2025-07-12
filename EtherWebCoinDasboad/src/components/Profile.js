@@ -91,31 +91,29 @@ const Profile = () => {
               <small>Rank :- {user?.rank}</small>
             </div>
             <div className="py-3 px-4 text-start">
-              <div className="mb-2">
+              <div className="mb-2 d-flex justify-content-between">
                 <strong>Email</strong>
-                <div className="text">{user?.email}</div>
+                <div className="text">{user?.email || 'NA'}</div>
               </div>
-              <div className="mb-2">
+
+              <div className="mb-2 d-flex justify-content-between align-items-center">
                 <strong>Referral Code</strong>
-                <div className="fw-bold">
+                <div className="fw-bold d-flex align-items-center">
                   <CIcon icon={cilShareAlt} className="me-2 text-success" />
-                  {user?.my_code}
+                  {user?.my_code || 'NA'}
                 </div>
               </div>
+
               <div className="mb-2 d-flex justify-content-between">
                 <span><strong>Status</strong></span>
                 <CBadge color="success">{user?.user_status}</CBadge>
               </div>
+           
               <div className="mb-2 d-flex justify-content-between">
-                <span><strong>Withdraw Status</strong></span>
-                <CBadge color={user?.withdraw_status === 'enable' ? 'success' : 'danger'}>
-                  {user?.withdraw_status}
-                </CBadge>
-              </div>
-              <div className="mb-2">
                 <strong>Join Date</strong>
-                <div className="text">{user?.date_time}</div>
+                <div className="text">{user?.date_time || 'NA'}</div>
               </div>
+
             </div>
           </CCardBody>
         </CCard>
@@ -157,33 +155,11 @@ const Profile = () => {
                 <label className="text-white mb-2">Status</label>
                 <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.user_status} readOnly />
               </CCol>
-              <CCol md={6}>
-                <label className="text-white mb-2">Withdraw Status</label>
-                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.withdraw_status} readOnly />
-              </CCol>
+              
             </CRow>
 
-            <CRow className="mb-3 g-3">
-              <CCol md={6}>
-                <label className="text-white mb-2">My Stake</label>
-                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.my_stake} readOnly />
-              </CCol>
-              <CCol md={6}>
-                <label className="text-white mb-2">Total Income</label>
-                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.total_income} readOnly />
-              </CCol>
-            </CRow>
-
-            <CRow className="mb-3 g-3">
-              <CCol md={6}>
-                <label className="text-white mb-2">Available Amount</label>
-                <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.available_amount} readOnly />
-              </CCol>
-              <CCol md={6}>
-                <label className="text-white mb-2">Stake Income</label>
-              <input type="text" className="form-control dark-input" style={{ backgroundColor: '#151136' }} value={user?.stake_income} readOnly />
-              </CCol>
-            </CRow>
+           
+           
           </CCardBody>
         </CCard>
       </CCol>

@@ -23,6 +23,7 @@ import StakeDetailsModal from '../model/StakeDetailsModal';
 import StakeCreateModal from '../model/StakeCreate';
 import { FaEye } from 'react-icons/fa';
 import PaginationButtons from '../views/pages/PaginationButtons';
+import { useAuth } from '../views/pages/context/AuthContext';
 
 const Stake = () => {
   const [stakeData, setStakeData] = useState(null);
@@ -38,7 +39,8 @@ const Stake = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
-
+  const { authUser } = useAuth()
+  const user = authUser?.USER
   const handleViewDetails = (item) => {
     setSelectedStake(item);
     setVisible(true);
@@ -67,9 +69,11 @@ const Stake = () => {
             <CCol xs={12}>
               <div className="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start gap-3">
                 <div>
-                  <h5 className="fw-bold mb-1">Stake Now</h5>
+                  <p className="mb-0">Available Amount: ${user?.available_amount || 0}</p>
+
                   <p className="mb-0">Earn rewards by staking your assets</p>
                 </div>
+
                 <CButton
                   color="warning"
                   className="text-black fw-bold"
@@ -97,19 +101,19 @@ const Stake = () => {
           <CRow className="mb-4">
             {[
               {
-                title: 'My Stake',
+                title: 'Active Stake',
                 value: stakeData?.stake_amount ?? 0,
                 icon: cilWallet,
                 color: 'text-primary',
               },
               {
-                title: 'Stake Income',
+                title: 'Total Stake',
                 value: stakeData?.stake_income ?? 0,
                 icon: cilMoney,
                 color: 'text-warning',
               },
               {
-                title: 'Remain Income',
+                title: 'Total Income',
                 value: stakeData?.remain_income ?? 0,
                 icon: cilDollar,
                 color: 'text-success',

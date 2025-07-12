@@ -23,7 +23,7 @@ const DepositForm = ({ onDepositSuccess }) => {
 
 
   const handleWeb3Transfer = async () => {
-    
+
     try {
       if (!window.ethereum) return alert('MetaMask not detected!')
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -37,12 +37,10 @@ const DepositForm = ({ onDepositSuccess }) => {
         throw new Error('Invalid backend response')
       }
       setAmount("")
-      toast.success(response.message);
       onDepositSuccess()
       const to_address = response.data.to_address
       const deposit_id = response?.data?.id;
       const request_amount = response?.data?.request_amount;
-
 
       if (!web3.utils.isAddress(to_address)) {
         alert('Invalid recipient address!')

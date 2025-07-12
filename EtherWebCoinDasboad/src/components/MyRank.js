@@ -28,31 +28,6 @@ const MyRank = () => {
 
   return (
     <div>
-      <div className="rank-cards">
-        <div className="rank-card pink-glow">
-          <img src={previousRank?.image} alt="Previous Rank" />
-          <div>
-            <h5>Previous Rank</h5>
-            <h5>{previousRank?.name || '-'}</h5>
-          </div>
-        </div>
-
-        <div className="rank-card pink-glow">
-          <img src={currentRank?.image} alt="Current Rank" />
-          <div>
-            <h5>Current Rank</h5>
-            <h5>{currentRank?.name || '-'}</h5>
-          </div>
-        </div>
-
-        <div className="rank-card pink-glow">
-          <img src={nextRank?.image} alt="Next Rank" />
-          <div>
-            <h5>Upcoming Rank</h5>
-            <h5>{nextRank?.name || '-'}</h5>
-          </div>
-        </div>
-      </div>
 
       {/* ===== Rank Table ===== */}
       <div className="rank-list mt-4">
@@ -65,14 +40,15 @@ const MyRank = () => {
                 <th>Icon</th>
                 <th>Rank Name</th>
                 <th>Direct Referral</th>
-                <th>Self Referral</th>
+                <th>Team Size</th>
+
+                <th>Condition</th>
+
+
                 <th>Team Business</th>
-                <th>Power Leg</th>
-                <th>Self Business</th>
-                <th>Other Leg</th>
+
                 <th>Reward</th>
                 <th>Status</th>
-                <th>Date Time</th>
               </tr>
             </thead>
             <tbody>
@@ -88,13 +64,10 @@ const MyRank = () => {
                   </td>
                   <td>{item.rank_name}</td>
                   <td>{item.direct_referral || "NA"}</td>
-                  <td>{item.self_referral || "NA"}</td>
-
-                  <td>{item.team_business}</td>
-                  <td>{item.power_leg}</td>
-                  <td>{item.self_business}</td>
-                  <td>{item.other_leg}</td>
-                  <td>{item.reward}</td>
+                  <td>{item.team_size || "NA"}</td>
+                  <td>{item.condition}</td>
+                  <td>${item.team_business}</td>
+                  <td>${item.reward || 0}</td>
                   <td>
                     <span
                       className={`badge ${item.status === 'pending' ? 'bg-warning' : 'bg-success'}`}
@@ -102,7 +75,6 @@ const MyRank = () => {
                       {item.status}
                     </span>
                   </td>
-                  <td>{item.date_time}</td>
                 </tr>
               ))}
             </tbody>

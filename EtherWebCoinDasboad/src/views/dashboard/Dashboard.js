@@ -115,33 +115,21 @@ const Dashboard = () => {
           border: 'none',
         }}
       >
-        <CCardBody className="d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center gap-3">
-            <div
-              className="bg-white bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
-              style={{ width: '60px', height: '60px' }}
-            >
-              <img src={bunnyEgg} alt="rank" width={40} />
-            </div>
-            <div className="fw-bold fs-5">My Rank</div>
-          </div>
-          <div className="fw-semibold">{user?.rank || '-'}</div>
-        </CCardBody>
+       
       </CCard>
 
       <CRow className="mb-4">
         <CRow className="mb-4">
           <StatCard icon="src/assets/images/UserDashboardIcons/AvailableAmount.png" label="Available Amount" value={user?.available_amount} bg="bg-primary bg-opacity-10" />
           <StatCard icon="src/assets/images/UserDashboardIcons/5.png" label="Total Withdraw" value={user?.withdraw_amount} bg="bg-warning bg-opacity-25" />
-          <StatCard icon="src/assets/images/UserDashboardIcons/RankIncome.png" label="My Business" value={user?.my_business} bg="bg-danger bg-opacity-10" />
+          <StatCard icon="src/assets/images/UserDashboardIcons/RankIncome.png" label="Direct Business" value={user?.my_business} bg="bg-danger bg-opacity-10" />
           <StatCard icon="src/assets/images/UserDashboardIcons/TeamBusiness.png" label="Team Business" value={user?.team_business} bg="bg-danger bg-opacity-10" onClick={() => navigate('/team-business')} />
           <StatCard icon="src/assets/images/userdashboardicons/mystake.png" label="My Stake" value={user?.my_stake} bg="bg-success bg-opacity-25" onClick={() => navigate('/stake')}
           />
-          <StatCard icon="src/assets/images/UserDashboardIcons/MyStakeReward.png" label="My Stake Reward" value={user?.stake_income} bg="bg-warning bg-opacity-25" />
+          <StatCard icon="src/assets/images/UserDashboardIcons/MyStakeReward.png" label="Staking Reward" value={user?.stake_income} bg="bg-warning bg-opacity-25" />
           <StatCard icon="src/assets/images/UserDashboardIcons/TotalIncome.png" label="Total Income" value={user?.total_income} bg="bg-success bg-opacity-25" />
-          <StatCard icon="src/assets/images/UserDashboardIcons/RankIncome.png" label="Rank Income" value={user?.rank_reward} bg="bg-info bg-opacity-25" onClick={() => navigate('/my-rank')} />
+          <StatCard icon="src/assets/images/UserDashboardIcons/RankIncome.png" label="Rank Reward" value={user?.rank_reward} bg="bg-info bg-opacity-25" onClick={() => navigate('/my-rank')} />
           <StatCard icon="src/assets/images/UserDashboardIcons/LevelIncome.png" label="Level Income" value={user?.level_income} bg="bg-danger bg-opacity-10" onClick={() => navigate('/level-income')} />
-          <StatCard icon="src/assets/images/UserDashboardIcons/ReferralIncome.png" label="Referral Income" value={user?.direct_income} bg="bg-danger bg-opacity-25" onClick={() => navigate('/referral-income')} />
 
         </CRow>
 

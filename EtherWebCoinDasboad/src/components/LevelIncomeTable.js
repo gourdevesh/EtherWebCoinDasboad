@@ -62,14 +62,14 @@ const LevelIncomeTable = () => {
     <CCard className="dark-table">
       <CCardHeader className="dark-table d-flex justify-content-between align-items-center">
         <strong>Level Income Table</strong>
-        <select className="form-select w-auto" onChange={(e) => handleFilter(e.target.value)}>
+        {/* <select className="form-select w-auto" onChange={(e) => handleFilter(e.target.value)}>
           <option value="">All Levels</option>
           {Object.entries(levelCounts).map(([level, count]) => (
             <option key={level} value={level}>
               Level {level} ({count})
             </option>
           ))}
-        </select>
+        </select> */}
       </CCardHeader>
 
       <CCardBody>
@@ -92,7 +92,7 @@ const LevelIncomeTable = () => {
                   <CTableHeaderCell>Join Date</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
-              <CTableBody>
+              {/* <CTableBody>
                 {paginatedData.length > 0 ? (
                   paginatedData.map((item, index) => (
                     <CTableRow key={item.id || index}>
@@ -111,16 +111,16 @@ const LevelIncomeTable = () => {
                     </CTableDataCell>
                   </CTableRow>
                 )}
-              </CTableBody>
+              </CTableBody> */}
             </CTable>
 </div>
-            {totalPages > 1 && (
+            {/* {totalPages > 1 && (
                 <PaginationButtons
                   currentPage={currentPage}
                   totalPages={totalPages}
                   onPageChange={(page) => setCurrentPage(page)}
                 />
-            )}
+            )} */}
           </>
         )}
       </CCardBody>
