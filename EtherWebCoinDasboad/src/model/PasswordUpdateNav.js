@@ -6,8 +6,6 @@ import PasswordUpdateModal from './PasswordUpdateModal'
 const PasswordUpdateNav = () => {
     const [showPasswordModal, setShowPasswordModal] = useState(false)
 
-
-
     const handleClick = () => {
         setShowPasswordModal(true) //
     }

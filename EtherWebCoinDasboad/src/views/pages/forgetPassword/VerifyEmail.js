@@ -25,7 +25,6 @@ const VerifyEmail = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-
         try {
             const response = await verifyEmail({ email })
             toast.success(response.message || 'Verification email sent!')

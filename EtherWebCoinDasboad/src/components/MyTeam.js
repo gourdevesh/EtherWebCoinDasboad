@@ -70,10 +70,11 @@ const MyTeam = () => {
   return (
     <>
       <CRow className="mb-4 g-3">
-        <CCol xs={12} sm={4}>
-          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
+        <CCol xs={12} sm={4} className="d-flex">
+          <CCard className="border-pink shadow-sm dark-card w-100" style={{ minHeight: '110px' }}>
             <CCardBody className="d-flex align-items-center gap-4">
-              <div className="icon-circle bg-light-purple text-primary d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+              <div className="icon-circle bg-light-purple text-primary d-flex justify-content-center align-items-center"
+                style={{ width: '60px', height: '60px', fontSize: '30px' }}>
                 <CIcon icon={cilUserFollow} size="xxl" />
               </div>
               <div>
@@ -84,10 +85,11 @@ const MyTeam = () => {
           </CCard>
         </CCol>
 
-        <CCol xs={12} sm={4}>
-          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '90px' }}>
+        <CCol xs={12} sm={4} className="d-flex">
+          <CCard className="border-pink shadow-sm dark-card w-100" style={{ minHeight: '120px' }}>
             <CCardBody className="d-flex align-items-center gap-4">
-              <div className="icon-circle bg-light-warning text-warning d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+              <div className="icon-circle bg-light-warning text-warning d-flex justify-content-center align-items-center"
+                style={{ width: '60px', height: '60px', fontSize: '30px' }}>
                 <CIcon icon={cilUser} size="xxl" />
               </div>
               <div>
@@ -98,10 +100,11 @@ const MyTeam = () => {
           </CCard>
         </CCol>
 
-        <CCol xs={12} sm={4}>
-          <CCard className="border-pink shadow-sm dark-card" style={{ minHeight: '9px' }}>
+        <CCol xs={12} sm={4} className="d-flex">
+          <CCard className="border-pink shadow-sm dark-card w-100" style={{ minHeight: '120px' }}>
             <CCardBody className="d-flex align-items-center gap-4">
-              <div className="icon-circle bg-light-info text-info d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px', fontSize: '30px' }}>
+              <div className="icon-circle bg-light-info text-info d-flex justify-content-center align-items-center"
+                style={{ width: '60px', height: '60px', fontSize: '30px' }}>
                 <CIcon icon={cilGroup} size="xxl" />
               </div>
               <div>
@@ -112,6 +115,7 @@ const MyTeam = () => {
           </CCard>
         </CCol>
       </CRow>
+
 
       <div style={{ padding: "20px", height: "auto" }} className='dark-table'>
 
@@ -218,45 +222,94 @@ const MyTeam = () => {
               </CModalBody>
             </CModal>
           </CTabPane>
-
           <CTabPane visible={activeTab === 'direct'}>
             {referralData?.data?.length > 0 ? (
-              <CTable hover className="mt-3 dark-table">
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell>Image</CTableHeaderCell>
-                    <CTableHeaderCell>Name</CTableHeaderCell>
-                    <CTableHeaderCell>Email</CTableHeaderCell>
-                    <CTableHeaderCell>Status</CTableHeaderCell>
-                    <CTableHeaderCell>Date</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  {referralData.data.map((user, idx) => (
-                    <CTableRow key={idx}>
-                      <CTableDataCell style={getRowBg(idx)}>
-                        <img src={user.profile_image} alt={user.name} style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
-                      </CTableDataCell>
-                      <CTableDataCell style={getRowBg(idx)}>{user.name}</CTableDataCell>
-                      <CTableDataCell style={getRowBg(idx)}>{user.email}</CTableDataCell>
-                      <CTableDataCell style={getRowBg(idx)}>
-                        <span className={`badge bg-${user.stake_status === 'pending' ? 'warning' : 'success'}`}>
-                          {user.stake_status}
-                        </span>
-                      </CTableDataCell>
-                      <CTableDataCell style={getRowBg(idx)}>{new Date(user.created_at).toLocaleDateString()}</CTableDataCell>
+              <div style={{ overflowX: 'auto' }}>
+                <CTable hover className="mt-3 dark-table" style={{ minWidth: '700px' }}>
+                  <CTableHead>
+                    <CTableRow>
+                      <CTableHeaderCell>Image</CTableHeaderCell>
+                      <CTableHeaderCell>Name</CTableHeaderCell>
+                      <CTableHeaderCell>Email</CTableHeaderCell>
+                      <CTableHeaderCell>Status</CTableHeaderCell>
+                      <CTableHeaderCell>Date</CTableHeaderCell>
                     </CTableRow>
-                  ))}
-                </CTableBody>
-              </CTable>
+                  </CTableHead>
+                  <CTableBody>
+                    {referralData.data.map((user, idx) => (
+                      <CTableRow key={idx}>
+                        <CTableDataCell style={getRowBg(idx)}>
+                          <img
+                            src={user.profile_image}
+                            alt={user.name}
+                            style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+                          />
+                        </CTableDataCell>
+                        <CTableDataCell style={getRowBg(idx)}>{user.name}</CTableDataCell>
+                        <CTableDataCell style={getRowBg(idx)}>{user.email}</CTableDataCell>
+                        <CTableDataCell style={getRowBg(idx)}>
+                          <span className={`badge bg-${user.stake_status === 'pending' ? 'warning' : 'success'}`}>
+                            {user.stake_status}
+                          </span>
+                        </CTableDataCell>
+                        <CTableDataCell style={getRowBg(idx)}>
+                          {new Date(user.created_at).toLocaleDateString()}
+                        </CTableDataCell>
+                      </CTableRow>
+                    ))}
+                  </CTableBody>
+                </CTable>
+              </div>
             ) : (
               <div className="mt-3">No direct referral data</div>
             )}
           </CTabPane>
 
           <CTabPane visible={activeTab === 'active'} className='dark-table'>
-            <div className="mt-3">No active referral data</div>
+            {referralData?.data?.filter(user => user.stake_status === 'active')?.length > 0 ? (
+              <div style={{ overflowX: 'auto' }}>
+                <CTable hover className="mt-3 dark-table" style={{ minWidth: '700px' }}>
+                  <CTableHead>
+                    <CTableRow>
+                      <CTableHeaderCell>Image</CTableHeaderCell>
+                      <CTableHeaderCell>Name</CTableHeaderCell>
+                      <CTableHeaderCell>Email</CTableHeaderCell>
+                      <CTableHeaderCell>Status</CTableHeaderCell>
+                      <CTableHeaderCell>Date</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableHead>
+                  <CTableBody>
+                    {referralData.data
+                      .filter(user => user.stake_status === 'active')
+                      .map((user, idx) => (
+                        <CTableRow key={idx}>
+                          <CTableDataCell style={getRowBg(idx)}>
+                            <img
+                              src={user.profile_image}
+                              alt={user.name}
+                              style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+                            />
+                          </CTableDataCell>
+                          <CTableDataCell style={getRowBg(idx)}>{user.name}</CTableDataCell>
+                          <CTableDataCell style={getRowBg(idx)}>{user.email}</CTableDataCell>
+                          <CTableDataCell style={getRowBg(idx)}>
+                            <span className="badge bg-success">
+                              {user.stake_status}
+                            </span>
+                          </CTableDataCell>
+                          <CTableDataCell style={getRowBg(idx)}>
+                            {new Date(user.created_at).toLocaleDateString()}
+                          </CTableDataCell>
+                        </CTableRow>
+                      ))}
+                  </CTableBody>
+                </CTable>
+              </div>
+            ) : (
+              <div className="mt-3">No active referral data</div>
+            )}
           </CTabPane>
+
         </CTabContent>
       </div>
     </>

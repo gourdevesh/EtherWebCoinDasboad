@@ -66,24 +66,24 @@ export const verifyEmail = async (payload) => {
 };
 
 export const resendVerificationEmail = async (payload) => {
-  try {
-    const response = await api.post('/password-reset', payload);
-    return { status: true, message: response.data.message };
-  } catch (error) {
-    const res = error.response?.data;
-    let message = 'Something went wrong';
+    try {
+        const response = await api.post('/password-reset', payload);
+        return { status: true, message: response.data.message };
+    } catch (error) {
+        const res = error.response?.data;
+        let message = 'Something went wrong';
 
-    if (res?.error && typeof res.error === 'object') {
-      const firstKey = Object.keys(res.error)[0];
-      if (Array.isArray(res.error[firstKey])) {
-        message = res.error[firstKey][0];
-      }
-    } else if (typeof res?.message === 'string') {
-      message = res.message;
+        if (res?.error && typeof res.error === 'object') {
+            const firstKey = Object.keys(res.error)[0];
+            if (Array.isArray(res.error[firstKey])) {
+                message = res.error[firstKey][0];
+            }
+        } else if (typeof res?.message === 'string') {
+            message = res.message;
+        }
+
+        return { status: false, message };
     }
-
-    return { status: false, message };
-  }
 };
 export const sendOtp = async () => {
     const token = localStorage.getItem('token');

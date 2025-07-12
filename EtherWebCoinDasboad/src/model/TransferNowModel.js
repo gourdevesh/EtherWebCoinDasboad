@@ -39,6 +39,7 @@ const FundTransferModal = ({ show, handleClose, onTransfer }) => {
       if (result.success) {
         toast.success('Transfer successful');
         handleClose();
+        onTransfer();
       } else {
         toast.error(result.error.message || 'Transfer failed');
       }

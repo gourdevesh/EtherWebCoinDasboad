@@ -23,6 +23,7 @@ import { FaExchangeAlt, FaEye, FaMoneyBillWave } from 'react-icons/fa';
 import WithdrawRequestModal from '../model/WithdrawRequest';
 import { getWithdrawList } from '../Services/WidthDrawServer';
 import { useAuth } from '../views/pages/context/AuthContext';
+import PaginationButtons from '../views/pages/PaginationButtons';
 
 const WithDraw = () => {
     const [widthDrawData, setWidthData] = useState(null);
@@ -30,6 +31,14 @@ const WithDraw = () => {
     const [error, setError] = useState('');
     const [visible, setVisible] = useState(false);
     const { authUser } = useAuth()
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 10
+    const totalPages = Math.ceil((widthDrawData?.data?.length || 0) / itemsPerPage)
+
+    const paginatedData = widthDrawData?.data?.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    )
 
     const user = authUser?.USER
     const fetchWithdrawList = async () => {
@@ -49,59 +58,59 @@ const WithDraw = () => {
 
     return (
         <div >
-           <CCard
-  className="mb-4"
-  style={{
-    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
-    color: '#fff',
-  }}
->
-  <CCardBody>
-    <CRow className="align-items-center g-3 text-center text-sm-start">
-      
-      {/* Icon */}
-      <CCol xs={12} sm={1} className="d-flex justify-content-center justify-content-sm-start">
-        <div
-          style={{
-            backgroundColor: '#fff',
-            color: '#a86b25',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '20px',
-            fontWeight: 'bold',
-          }}
-        >
-          <FaExchangeAlt />
-        </div>
-      </CCol>
+            <CCard
+                className="mb-4"
+                style={{
+                    background: 'linear-gradient(to right, #a86b25, rgb(181, 111, 42))',
+                    color: '#fff',
+                }}
+            >
+                <CCardBody>
+                    <CRow className="align-items-center g-3 text-center text-sm-start">
 
-      {/* Text */}
-      <CCol xs={12} sm={7}>
-        <h5 className="fw-bold mb-1">Available Amount</h5>
-        <p className="mb-0">{user?.available_amount || 0}</p>
-      </CCol>
+                        {/* Icon */}
+                        <CCol xs={12} sm={1} className="d-flex justify-content-center justify-content-sm-start">
+                            <div
+                                style={{
+                                    backgroundColor: '#fff',
+                                    color: '#a86b25',
+                                    borderRadius: '50%',
+                                    width: '60px',
+                                    height: '60px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '20px',
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                <FaExchangeAlt />
+                            </div>
+                        </CCol>
 
-      {/* Button */}
-      <CCol xs={12} sm={4}>
-        <div className="d-flex justify-content-center justify-content-sm-end">
-          <CButton
-            color="warning"
-            className="text-black fw-bold d-flex align-items-center gap-2 px-3 py-2"
-            onClick={() => setVisible(true)}
-            style={{ fontSize: '0.875rem', minWidth: '150px' }}
-          >
-            <FaMoneyBillWave size={16} />
-            Withdraw Now
-          </CButton>
-        </div>
-      </CCol>
-    </CRow>
-  </CCardBody>
-</CCard>
+                        {/* Text */}
+                        <CCol xs={12} sm={7}>
+                            <h5 className="fw-bold mb-1">Available Amount</h5>
+                            <p className="mb-0">{user?.available_amount || 0}</p>
+                        </CCol>
+
+                        {/* Button */}
+                        <CCol xs={12} sm={4}>
+                            <div className="d-flex justify-content-center justify-content-sm-end">
+                                <CButton
+                                    color="warning"
+                                    className="text-black fw-bold d-flex align-items-center gap-2 px-3 py-2"
+                                    onClick={() => setVisible(true)}
+                                    style={{ fontSize: '0.875rem', minWidth: '150px' }}
+                                >
+                                    <FaMoneyBillWave size={16} />
+                                    Withdraw Now
+                                </CButton>
+                            </div>
+                        </CCol>
+                    </CRow>
+                </CCardBody>
+            </CCard>
 
             {loading ? (
                 <div className="text-center my-5">
@@ -134,7 +143,7 @@ const WithDraw = () => {
 
                                         <CCol className="ps-0" style={{ marginLeft: '10px', fontSize: '14px' }}>
                                             <p className="mb-1 fw-bold">Total Amount</p>
-                                            <h6 className="fw-bold mb-0">$ {user?.total_income}</h6>
+                                            <h6 className="fw-bold mb-0">$ {user?.total_income || 0}</h6>
                                         </CCol>
                                     </CRow>
                                 </CCardBody>
@@ -166,7 +175,7 @@ const WithDraw = () => {
 
                                         <CCol className="ps-0" style={{ marginLeft: '10px', fontSize: '14px' }}>
                                             <p className="mb-1 fw-bold">Withdraw Amount</p>
-                                            <h6 className="fw-bold mb-0">$ {user?.withdraw_amount}</h6>
+                                            <h6 className="fw-bold mb-0">$ {user?.withdraw_amount || 0}</h6>
                                         </CCol>
                                     </CRow>
                                 </CCardBody>
@@ -197,10 +206,10 @@ const WithDraw = () => {
                                 </CTableHead>
 
                                 <CTableBody className='dark-table'>
-                                    {widthDrawData?.data && widthDrawData.data.length > 0 ? (
-                                        widthDrawData.data.map((item, index) => (
+                                    {paginatedData && paginatedData.length > 0 ? (
+                                        paginatedData.map((item, index) => (
                                             <CTableRow key={item.id || index}>
-                                                <CTableDataCell>{index + 1}</CTableDataCell>
+                                                <CTableDataCell>{(currentPage - 1) * itemsPerPage + index + 1}</CTableDataCell>
                                                 <CTableDataCell>${item.available_amount}</CTableDataCell>
                                                 <CTableDataCell>${item.remain_amount}</CTableDataCell>
                                                 <CTableDataCell>${item.withdraw_amount}</CTableDataCell>
@@ -211,7 +220,7 @@ const WithDraw = () => {
                                                 </CTableDataCell>
 
                                                 <CTableDataCell style={{ maxWidth: 100, wordBreak: 'break-all' }}>
-                                                    {/* {item.to_address} */} {item.to_address?.slice(0, 8)}....{item.to_address?.slice(-6)}
+                                                    {item.to_address?.slice(0, 8)}....{item.to_address?.slice(-6)}
                                                 </CTableDataCell>
                                                 <CTableDataCell>
                                                     {item.txn_hash ? (
@@ -238,12 +247,20 @@ const WithDraw = () => {
 
                                 </CTableBody>
                             </CTable>
+                            {totalPages > 1 && (
+                                <PaginationButtons
+                                    currentPage={currentPage}
+                                    totalPages={totalPages}
+                                    onPageChange={(page) => setCurrentPage(page)}
+                                />
+                            )}
+
                         </CCardBody>
                     </CCard>
 
                 </>
             )}
-            <WithdrawRequestModal visible={visible} setVisible={setVisible} />
+            <WithdrawRequestModal visible={visible} setVisible={setVisible} fetchWithdrawList={fetchWithdrawList} />
         </div>
     );
 };

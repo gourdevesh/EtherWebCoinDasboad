@@ -83,12 +83,15 @@ const UpdateTnxPasswordForm = () => {
         <CContainer>
             <CRow className="justify-content-center">
                 <CCol xs={12} sm={10} md={8} lg={6}>
-                    <CCard style={{backgroundColor: '#0B0730', color: '#fff'}}>
+                    <CCard style={{ backgroundColor: '#0B0730', color: '#fff' }}>
                         <CCardHeader className="d-flex justify-content-between align-items-center">
                             <strong>Update Transaction Password</strong>
                             <CButton color="secondary" size="sm" onClick={handleSendOtp} disabled={otpLoading}>
-                                {otpLoading ? 'Sending...' : 'Set OTP'}
-                            </CButton>
+                                {otpLoading
+                                    ? 'Sending...'
+                                    : timer > 0
+                                        ? `Resend OTP`
+                                        : 'Send OTP'}                            </CButton>
                         </CCardHeader>
 
                         <CCardBody>

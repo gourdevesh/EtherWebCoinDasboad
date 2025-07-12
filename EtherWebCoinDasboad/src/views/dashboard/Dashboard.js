@@ -20,8 +20,10 @@ const Dashboard = () => {
   const user = authUser?.USER
   const navigate = useNavigate()
   const handleCopyShare = async () => {
-    const code = user?.my_code || ''
-    const referralUrl = `http://localhost:4000/#/register?ref=${code}`
+    const code = user?.my_code || '';
+    const currentUrl = window.location.origin;
+    const referralUrl = `${currentUrl}/#/register?ref=${code}`;
+
     try {
       await navigator.clipboard.writeText(referralUrl)
       if (navigator.share) {

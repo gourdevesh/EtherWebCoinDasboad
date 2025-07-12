@@ -79,24 +79,16 @@ const routes = [
   { path: '/update-tnx-password', name: 'Update Tnx Password', element: UpdateTnxPassword },
   { path: '/fund-transfer', name: 'Fund Transfer', element: FundTransfer },
   { path: '/withdraw', name: 'WithDraw', element: WithDraw },
-    { path: '/deposit', name: 'Deposit', element: DepositHistoryTable },
-    { path: '/level-income', name: 'Level Income', element: LevelIncomeTable },
-       { path: '/referral-income', name: 'Referral Income', element: ReferralIncomeTable },
-        { path: '/team-business', name: 'Team Business', element: TeamBusinessTable },
-
-
-
-
+  { path: '/deposit', name: 'Deposit', element: DepositHistoryTable },
+  { path: '/level-income', name: 'Level Income', element: LevelIncomeTable },
+  { path: '/referral-income', name: 'Referral Income', element: ReferralIncomeTable },
+  { path: '/team-business', name: 'Team Business', element: TeamBusinessTable },
 
 
 
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
-
-
-
-
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },

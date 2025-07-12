@@ -22,6 +22,7 @@ import { stake } from '../Services/stake';
 import StakeDetailsModal from '../model/StakeDetailsModal';
 import StakeCreateModal from '../model/StakeCreate';
 import { FaEye } from 'react-icons/fa';
+import PaginationButtons from '../views/pages/PaginationButtons';
 
 const Stake = () => {
   const [stakeData, setStakeData] = useState(null);
@@ -30,6 +31,13 @@ const Stake = () => {
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedStake, setSelectedStake] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
+  const totalPages = Math.ceil((stakeData?.data?.length || 0) / itemsPerPage)
+  const paginatedData = stakeData?.data?.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
 
   const handleViewDetails = (item) => {
     setSelectedStake(item);
@@ -39,6 +47,7 @@ const Stake = () => {
     try {
       const data = await stake();
       setStakeData(data);
+
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
@@ -50,29 +59,29 @@ const Stake = () => {
   }, []);
 
   return (
-  <>          
+    <>
       {/* Banner */}
- <CCard className="mb-4 banner-card">
-  <CCardBody>
-    <CRow>
-      <CCol xs={12}>
-        <div className="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start gap-3">
-          <div>
-            <h5 className="fw-bold mb-1">Stake Now</h5>
-            <p className="mb-0">Earn rewards by staking your assets</p>
-          </div>
-          <CButton
-            color="warning"
-            className="text-black fw-bold"
-            onClick={() => setShow(true)}
-          >
-            Stake Now
-          </CButton>
-        </div>
-      </CCol>
-    </CRow>
-  </CCardBody>
-</CCard>
+      <CCard className="mb-4 banner-card">
+        <CCardBody>
+          <CRow>
+            <CCol xs={12}>
+              <div className="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start gap-3">
+                <div>
+                  <h5 className="fw-bold mb-1">Stake Now</h5>
+                  <p className="mb-0">Earn rewards by staking your assets</p>
+                </div>
+                <CButton
+                  color="warning"
+                  className="text-black fw-bold"
+                  onClick={() => setShow(true)}
+                >
+                  Stake Now
+                </CButton>
+              </div>
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
 
 
       {/* Content */}
@@ -144,10 +153,10 @@ const Stake = () => {
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    {stakeData?.data?.length > 0 ? (
-                      stakeData.data.map((item, index) => (
+                    {paginatedData?.length > 0 ? (
+                      paginatedData?.map((item, index) => (
                         <CTableRow key={item.id || index}>
-                          <CTableDataCell>{index + 1}</CTableDataCell>
+                          <CTableDataCell>{(currentPage - 1) * itemsPerPage + index + 1}</CTableDataCell>
                           <CTableDataCell>${item.stake_amount}</CTableDataCell>
 
                           <CTableDataCell>{item.daily_reward_percentage}%</CTableDataCell>
@@ -177,13 +186,27 @@ const Stake = () => {
                   </CTableBody>
                 </CTable>
               </div>
+              {totalPages > 1 && (
+                <PaginationButtons
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              )}
+
             </CCardBody>
+
           </CCard>
+
         </>
+
+
+
       )}
 
       <StakeDetailsModal visible={visible} onClose={() => setVisible(false)} data={selectedStake} />
       <StakeCreateModal visible={show} onClose={() => setShow(false)} fetchStakeData={fetchStakeData} />
+
     </>
   );
 };

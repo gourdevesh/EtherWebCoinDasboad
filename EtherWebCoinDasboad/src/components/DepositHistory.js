@@ -97,7 +97,7 @@ const DepositHistoryTable = () => {
             {deposits && deposits.length > 0 ? (
               deposits.map((item, index) => (
                 <CTableRow key={index}>
-                  <CTableDataCell>{index + 1}</CTableDataCell>
+                  <CTableDataCell>{(pagination.currentPage -1) * pagination.perPage + index+ 1}</CTableDataCell>
                   <CTableDataCell>{item.deposit_asset}</CTableDataCell>
                   <CTableDataCell>{item.deposit_amount}</CTableDataCell>
                   <CTableDataCell>{item.deposit_type}</CTableDataCell>

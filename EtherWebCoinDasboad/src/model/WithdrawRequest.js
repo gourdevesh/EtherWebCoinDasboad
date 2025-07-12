@@ -10,18 +10,22 @@ import {
   CForm,
   CAlert,
   CSpinner,
+  CInputGroup,
 } from '@coreui/react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { decryptWithKey, startWithdraw, updateWithdraw } from '../Services/WidthDrawServer';
 import Swal from 'sweetalert2';
 import { useAuth } from '../views/pages/context/AuthContext';
 import Web3 from 'web3';
 
-const WithdrawRequestModal = ({ visible, setVisible }) => {
+const WithdrawRequestModal = ({ visible, setVisible, fetchWithdrawList }) => {
   const [amount, setAmount] = useState('');
   const [address, setAddress] = useState('0xB827B836CA7Fb632f74297607282C772bb47bFBc');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const { authUser } = useAuth()
   const user = authUser?.USER
 
@@ -37,6 +41,12 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
         toast.error(res?.message || 'Withdrawal failed.');
         return;
       }
+      toast.success(res?.message || 'Withdrawal request submitted successfully');
+      setAmount('');
+      setAddress('');
+      setPassword('');
+      setVisible(false);
+      fetchWithdrawList()
 
       if (res?.access && res?.type === 'auto') {
         await handleBNBTransfer(res, { to_address: address, amount }, user?.email);
@@ -62,11 +72,7 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
         });
       }
 
-      toast.success(res?.message || 'Withdrawal request submitted successfully');
-      setAmount('');
-      setAddress('');
-      setPassword('');
-      setVisible(false);
+
     } catch (error) {
       toast.error(error.message || 'Unexpected error occurred.');
     } finally {
@@ -168,7 +174,7 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
 
           <div className="mb-3">
             <CFormLabel>Select Network</CFormLabel>
-            <CFormInput disabled value="BEP 20" />
+            <CFormInput disabled value="BEP20" />
           </div>
 
           <div className="mb-3">
@@ -185,14 +191,17 @@ const WithdrawRequestModal = ({ visible, setVisible }) => {
 
           <div className="mb-3">
             <CFormLabel>Transaction Password</CFormLabel>
-            <CFormInput
-              type="password"
-              placeholder="Enter transaction password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+            <CInputGroup>
+              <CFormInput
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter transaction password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
 
-            />
+              />
+              <CButton type='button' color='secondary' varient="outline" onClick={() => setShowPassword(!showPassword)}> {showPassword ? <FaEyeSlash /> : <FaEye />} </CButton>
+            </CInputGroup>
           </div>
 
           {/* <div className="mb-3">

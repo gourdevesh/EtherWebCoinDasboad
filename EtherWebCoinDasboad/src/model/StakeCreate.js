@@ -34,6 +34,7 @@ const StakeCreateModal = ({ visible, onClose, fetchStakeData }) => {
         toast.success(res.message || 'Stake submitted successfully!')
         onClose()
         fetchStakeData()
+        setStakeAmount('')
       } else {
         toast.error(res.message || 'Stake submission failed')
       }
@@ -75,16 +76,16 @@ const StakeCreateModal = ({ visible, onClose, fetchStakeData }) => {
                 </CCol>
               </CRow>
 
-             <CRow className="mb-4">
-  <CCol xs={12}>
-    <CFormLabel>Stake Package </CFormLabel>
-    <CFormInput
-      type="text"
-      placeholder="50, 100, 150, 200 ..., 10000"
-      readOnly
-    />
-  </CCol>
-</CRow>
+              <CRow className="mb-4">
+                <CCol xs={12}>
+                  <CFormLabel>Stake Package </CFormLabel>
+                  <CFormInput
+                    type="text"
+                    placeholder="50, 100, 150, 200 ..., 10000"
+                    readOnly
+                  />
+                </CCol>
+              </CRow>
 
 
               <CRow className="mt-3">
